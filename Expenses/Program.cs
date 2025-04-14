@@ -1,4 +1,5 @@
 using Expenses.Data;
+using Expenses.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ExpenseAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
-
+builder.Services.AddScoped<IExpensesService, ExpensesService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
